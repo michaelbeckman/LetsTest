@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbershop Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>✂️ Barbershop Finder</h1>
+    <p>Find top-rated barbershops near you</p>
+  </header>
+
+  <main>
+    <form id="search-form">
+      <label for="zip">Enter your zip code:</label>
+      <div class="input-group">
+        <input
+          type="text"
+          id="zip"
+          name="zip"
+          placeholder="e.g. 90210"
+          maxlength="5"
+          inputmode="numeric"
+          pattern="\d{5}"
+          required
+          autocomplete="postal-code"
+        />
+        <button type="submit">Search</button>
+      </div>
+    </form>
+
+    <section id="results-section" hidden>
+      <h2 id="results-heading"></h2>
+      <ul id="results-list"></ul>
+    </section>
+
+    <section id="error-section" hidden>
+      <p id="error-message" class="error"></p>
+    </section>
+
+    <div id="loader" class="loader" hidden></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
