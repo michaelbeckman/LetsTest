@@ -1,0 +1,185 @@
+/* ── Reset & base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  min-height: 100vh;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+header {
+  background: #1a1a2e;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+}
+header h1 { font-size: 2rem; letter-spacing: 1px; }
+header p  { margin-top: .4rem; opacity: .75; font-size: .95rem; }
+
+/* ── Main layout ──────────────────────────────────────────────── */
+main {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* ── Search form ──────────────────────────────────────────────── */
+#search-form {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+#search-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: .6rem;
+  font-size: 1rem;
+}
+.input-group {
+  display: flex;
+  gap: .6rem;
+}
+.input-group input {
+  flex: 1;
+  padding: .65rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  transition: border-color .2s;
+}
+.input-group input:focus {
+  outline: none;
+  border-color: #1a1a2e;
+}
+.input-group button {
+  padding: .65rem 1.4rem;
+  background: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.input-group button:hover { background: #c1121f; }
+
+/* ── Loader ───────────────────────────────────────────────────── */
+.loader {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.loader::after {
+  content: '';
+  width: 48px; height: 48px;
+  border: 5px solid #ddd;
+  border-top-color: #e63946;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Error message ────────────────────────────────────────────── */
+.error {
+  margin-top: 1.2rem;
+  background: #ffe0e0;
+  color: #c00;
+  padding: .8rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* ── Results heading ──────────────────────────────────────────── */
+#results-heading {
+  margin-top: 1.8rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #444;
+}
+
+/* ── Result cards ─────────────────────────────────────────────── */
+#results-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+
+.card-img {
+  width: 120px;
+  min-height: 120px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #ddd;
+}
+.card-img-placeholder {
+  width: 120px;
+  min-height: 120px;
+  flex-shrink: 0;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.card-body {
+  padding: .9rem 1rem .9rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .3rem;
+}
+.card-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-decoration: none;
+}
+.card-name:hover { text-decoration: underline; }
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .95rem;
+}
+.stars { color: #f4a400; font-size: 1rem; }
+.review-count { color: #666; font-size: .85rem; }
+
+.card-address { font-size: .88rem; color: #555; }
+.card-phone   { font-size: .88rem; color: #555; }
+
+.badge-closed {
+  display: inline-block;
+  background: #c00;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .15rem .45rem;
+  border-radius: 4px;
+  letter-spacing: .5px;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .card-img, .card-img-placeholder { width: 90px; min-height: 90px; }
+  .input-group { flex-direction: column; }
+  .input-group button { width: 100%; }
+}
