@@ -27,7 +27,7 @@ jobs:
             - name: Install Terraform
               uses: hashicorp/setup-terraform@v3
               with:
-                  terraform_version: "latest"
+                  terraform_version: "1.9.8"
 
             - name: Set up Python
               uses: actions/setup-python@v5
@@ -47,4 +47,4 @@ jobs:
 
             - name: Install React tooling
               run: |
-                  npm install -g create-react-app typescript
+                  npm install -g vite typescript
