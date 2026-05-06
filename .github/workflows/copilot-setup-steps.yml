@@ -1,0 +1,50 @@
+name: "Copilot Setup Steps"
+
+on:
+    workflow_dispatch:
+    push:
+        paths:
+            - .github/workflows/copilot-setup-steps.yml
+    pull_request:
+        paths:
+            - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+    copilot-setup-steps:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Install Azure CLI
+              run: |
+                  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+            - name: Install Terraform
+              uses: hashicorp/setup-terraform@v3
+              with:
+                  terraform_version: "latest"
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            - name: Install common Python DevOps packages
+              run: |
+                  pip install --upgrade pip
+                  pip install azure-cli-core azure-identity azure-mgmt-resource \
+                      requests pyyaml python-dotenv
+
+            - name: Set up Node.js (for React)
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Install React tooling
+              run: |
+                  npm install -g create-react-app typescript
