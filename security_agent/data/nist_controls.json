@@ -1,0 +1,325 @@
+{
+  "version": "1.0.0",
+  "source": "NIST SP 800-53 Rev 5 - Security and Privacy Controls",
+  "families": {
+    "AC": {
+      "name": "Access Control",
+      "controls": [
+        {
+          "id": "AC-1",
+          "title": "Policy and Procedures",
+          "description": "Develop, document, and disseminate an access control policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["access_control_policy_exists"],
+          "related": ["PM-9", "PS-8", "SA-8", "SI-12"]
+        },
+        {
+          "id": "AC-2",
+          "title": "Account Management",
+          "description": "Manage information system accounts, including establishing, activating, modifying, reviewing, disabling, and removing accounts.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["account_management_process", "account_review_schedule"],
+          "related": ["AC-3", "AC-5", "AC-6", "AC-17", "AC-19", "AC-20", "AU-9"]
+        },
+        {
+          "id": "AC-3",
+          "title": "Access Enforcement",
+          "description": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["access_enforcement_configured"],
+          "related": ["AC-2", "AC-4", "AC-5", "AC-6", "AC-16", "AC-17", "AC-18"]
+        },
+        {
+          "id": "AC-6",
+          "title": "Least Privilege",
+          "description": "Employ the principle of least privilege, allowing only authorized accesses for users which are necessary to accomplish assigned organizational tasks.",
+          "priority": "P1",
+          "baseline": ["MODERATE", "HIGH"],
+          "checks": ["least_privilege_enforced", "privileged_accounts_reviewed"],
+          "related": ["AC-2", "AC-3", "AC-5", "AC-16", "CM-5", "CM-11", "PL-2", "SA-8", "SA-15", "SA-17", "SC-38"]
+        },
+        {
+          "id": "AC-17",
+          "title": "Remote Access",
+          "description": "Establish and document usage restrictions, configuration/connection requirements, and implementation guidance for each type of remote access allowed.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["remote_access_policy", "vpn_configured", "mfa_for_remote_access"],
+          "related": ["AC-2", "AC-3", "AC-18", "AC-19", "AC-20", "CA-3", "CM-10", "IA-3", "IA-8", "MA-4", "PE-17"]
+        }
+      ]
+    },
+    "AU": {
+      "name": "Audit and Accountability",
+      "controls": [
+        {
+          "id": "AU-1",
+          "title": "Policy and Procedures",
+          "description": "Develop, document, and disseminate an audit and accountability policy.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["audit_policy_exists"],
+          "related": ["PM-9", "PS-8", "SA-8", "SI-12"]
+        },
+        {
+          "id": "AU-2",
+          "title": "Event Logging",
+          "description": "Identify the types of events that the system is capable of logging in support of the audit function and coordinate the event logging function with other organizations.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["event_logging_configured", "audit_log_events_defined"],
+          "related": ["AC-6", "AC-17", "AU-3", "AU-4", "AU-5", "AU-6", "AU-7", "AU-12", "MA-4", "MP-2", "MP-4", "SI-4"]
+        },
+        {
+          "id": "AU-3",
+          "title": "Content of Audit Records",
+          "description": "Ensure that audit records contain information that establishes what type of event occurred, when the event occurred, where the event occurred, the source of the event, the outcome of the event, and the identity of any individuals or subjects associated with the event.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["audit_record_content_complete"],
+          "related": ["AU-2", "AU-8", "AU-12", "SA-8", "SI-7"]
+        },
+        {
+          "id": "AU-6",
+          "title": "Audit Record Review, Analysis, and Reporting",
+          "description": "Review and analyze system audit records at a defined frequency for indications of inappropriate or unusual activity.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["audit_review_process", "siem_configured"],
+          "related": ["AC-2", "AC-3", "AC-6", "AC-17", "AT-3", "AU-7", "CA-7", "CM-5", "CM-10", "CM-11"]
+        },
+        {
+          "id": "AU-9",
+          "title": "Protection of Audit Information",
+          "description": "Protect audit information and audit tools from unauthorized access, modification, and deletion.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["audit_log_protected", "audit_log_permissions"],
+          "related": ["AC-3", "AC-6", "MP-2", "MP-4"]
+        }
+      ]
+    },
+    "CM": {
+      "name": "Configuration Management",
+      "controls": [
+        {
+          "id": "CM-1",
+          "title": "Policy and Procedures",
+          "description": "Develop, document, and disseminate a configuration management policy.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["cm_policy_exists"],
+          "related": ["PM-9", "PS-8", "SA-8", "SI-12"]
+        },
+        {
+          "id": "CM-2",
+          "title": "Baseline Configuration",
+          "description": "Develop, document, and maintain under configuration control, a current baseline configuration of the information system.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["baseline_configuration_documented"],
+          "related": ["CM-3", "CM-6", "CM-8", "CM-9", "SA-10", "SA-15", "SA-17"]
+        },
+        {
+          "id": "CM-6",
+          "title": "Configuration Settings",
+          "description": "Establish and document configuration settings for information technology products employed within the information system that reflect the most restrictive mode consistent with operational requirements.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["configuration_settings_hardened", "cis_benchmark_applied"],
+          "related": ["AC-19", "CM-2", "CM-3", "CM-7", "SA-4", "SI-2"]
+        },
+        {
+          "id": "CM-7",
+          "title": "Least Functionality",
+          "description": "Configure the information system to provide only essential capabilities, prohibiting or restricting the use of functions, ports, protocols, and/or services not required.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["unnecessary_services_disabled", "unused_ports_closed"],
+          "related": ["AC-6", "CM-2", "RA-5", "SA-5", "SC-7"]
+        }
+      ]
+    },
+    "IA": {
+      "name": "Identification and Authentication",
+      "controls": [
+        {
+          "id": "IA-1",
+          "title": "Policy and Procedures",
+          "description": "Develop, document, and disseminate an identification and authentication policy.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["ia_policy_exists"],
+          "related": ["PM-9", "PS-8", "SA-8", "SI-12"]
+        },
+        {
+          "id": "IA-2",
+          "title": "Identification and Authentication (Organizational Users)",
+          "description": "Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["unique_user_ids", "mfa_enabled"],
+          "related": ["AC-2", "AC-3", "AC-4", "AC-14", "AC-17", "AC-18", "AU-1", "AU-6", "CM-6", "IA-4"]
+        },
+        {
+          "id": "IA-5",
+          "title": "Authenticator Management",
+          "description": "Manage information system authenticators by verifying, as part of the initial authenticator distribution, the identity of the individual, group, role, or device receiving the authenticator.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["password_policy_configured", "password_expiry_set", "password_complexity_enforced"],
+          "related": ["AC-2", "CM-6", "IA-2", "IA-4", "IA-8", "MA-4", "SA-10"]
+        },
+        {
+          "id": "IA-8",
+          "title": "Identification and Authentication (Non-Organizational Users)",
+          "description": "Uniquely identify and authenticate non-organizational users (or processes acting on behalf of non-organizational users).",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["external_user_auth_configured"],
+          "related": ["AC-2", "AC-14", "AC-17", "AC-18", "IA-2", "IA-4", "IA-5", "MA-4", "SA-4", "SC-8"]
+        }
+      ]
+    },
+    "IR": {
+      "name": "Incident Response",
+      "controls": [
+        {
+          "id": "IR-1",
+          "title": "Policy and Procedures",
+          "description": "Develop, document, and disseminate an incident response policy.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["ir_policy_exists"],
+          "related": ["PM-9", "PS-8", "SA-8", "SI-12"]
+        },
+        {
+          "id": "IR-4",
+          "title": "Incident Handling",
+          "description": "Implement an incident handling capability for security incidents that includes preparation, detection and analysis, containment, eradication, and recovery.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["incident_handling_process", "incident_response_team"],
+          "related": ["AC-19", "AU-6", "CM-6", "CP-2", "CP-3", "CP-4", "IR-2", "IR-3", "IR-6", "IR-8", "PE-6"]
+        }
+      ]
+    },
+    "RA": {
+      "name": "Risk Assessment",
+      "controls": [
+        {
+          "id": "RA-1",
+          "title": "Policy and Procedures",
+          "description": "Develop, document, and disseminate a risk assessment policy.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["ra_policy_exists"],
+          "related": ["PM-9", "PS-8", "SA-8", "SI-12"]
+        },
+        {
+          "id": "RA-3",
+          "title": "Risk Assessment",
+          "description": "Conduct a risk assessment, including the likelihood and magnitude of harm, from unauthorized access, use, disclosure, disruption, modification, or destruction of the system.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["risk_assessment_completed", "risk_assessment_current"],
+          "related": ["CA-3", "CA-6", "CM-4", "CM-13", "CP-6", "IA-8", "MA-5", "PE-14", "PE-18", "PL-2", "PM-9"]
+        },
+        {
+          "id": "RA-5",
+          "title": "Vulnerability Monitoring and Scanning",
+          "description": "Monitor and scan for vulnerabilities in the information system and hosted applications periodically and when new vulnerabilities potentially affecting the system are identified.",
+          "priority": "P1",
+          "baseline": ["MODERATE", "HIGH"],
+          "checks": ["vulnerability_scanning_enabled", "scan_frequency_defined"],
+          "related": ["CA-2", "CA-7", "CM-4", "CM-6", "CM-8", "RA-2", "RA-3", "SA-11", "SI-2", "SI-3", "SI-7"]
+        }
+      ]
+    },
+    "SC": {
+      "name": "System and Communications Protection",
+      "controls": [
+        {
+          "id": "SC-5",
+          "title": "Denial-of-Service Protection",
+          "description": "Protect against or limit the effects of denial-of-service attacks.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["dos_protection_configured"],
+          "related": ["SC-7", "SC-40"]
+        },
+        {
+          "id": "SC-7",
+          "title": "Boundary Protection",
+          "description": "Monitor and control communications at the external boundary of the system and at key internal boundaries within the system.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["boundary_protection_configured", "firewall_configured", "dmz_configured"],
+          "related": ["AC-4", "AC-17", "AC-18", "AC-19", "AC-20", "CM-7", "SA-8", "SC-5", "SC-8", "SC-20"]
+        },
+        {
+          "id": "SC-8",
+          "title": "Transmission Confidentiality and Integrity",
+          "description": "Implement cryptographic mechanisms to prevent unauthorized disclosure of information and detect changes to information during transmission.",
+          "priority": "P1",
+          "baseline": ["MODERATE", "HIGH"],
+          "checks": ["tls_configured", "encryption_in_transit"],
+          "related": ["AC-17", "AC-18", "IA-3", "IA-8", "MA-4", "PE-4", "SA-4", "SC-20", "SC-23", "SI-3"]
+        },
+        {
+          "id": "SC-28",
+          "title": "Protection of Information at Rest",
+          "description": "Protect the confidentiality and integrity of information at rest.",
+          "priority": "P1",
+          "baseline": ["MODERATE", "HIGH"],
+          "checks": ["encryption_at_rest", "disk_encryption_enabled"],
+          "related": ["AC-3", "AC-6", "AC-19", "CA-7", "CM-3", "CM-6", "PE-10", "SC-8", "SI-7"]
+        }
+      ]
+    },
+    "SI": {
+      "name": "System and Information Integrity",
+      "controls": [
+        {
+          "id": "SI-2",
+          "title": "Flaw Remediation",
+          "description": "Identify, report, and correct information system flaws; test software updates related to flaw remediation for effectiveness and potential side effects before installation.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["patch_management_process", "patching_current"],
+          "related": ["CA-7", "CM-3", "CM-4", "CM-5", "CM-8", "MA-2", "RA-5", "SA-10", "SA-11", "SI-3", "SI-7"]
+        },
+        {
+          "id": "SI-3",
+          "title": "Malicious Code Protection",
+          "description": "Implement malicious code protection mechanisms at information system entry and exit points to detect and eradicate malicious code.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["antivirus_installed", "antivirus_updated"],
+          "related": ["CM-3", "CM-8", "IR-4", "MA-3", "MA-4", "RA-5", "SA-4", "SA-8", "SA-12", "SA-13", "SC-7", "SC-26", "SC-44", "SI-2", "SI-4", "SI-7"]
+        },
+        {
+          "id": "SI-4",
+          "title": "System Monitoring",
+          "description": "Monitor the information system to detect attacks and indicators of potential attacks in accordance with monitoring objectives.",
+          "priority": "P1",
+          "baseline": ["LOW", "MODERATE", "HIGH"],
+          "checks": ["ids_ips_configured", "monitoring_alerts_configured"],
+          "related": ["AC-2", "AC-3", "AC-4", "AC-8", "AC-17", "AU-2", "AU-6", "AU-7", "AU-9", "AU-12", "CA-2", "CA-7"]
+        },
+        {
+          "id": "SI-7",
+          "title": "Software, Firmware, and Information Integrity",
+          "description": "Employ integrity verification tools to detect unauthorized changes to software, firmware, and information.",
+          "priority": "P1",
+          "baseline": ["MODERATE", "HIGH"],
+          "checks": ["integrity_checking_enabled", "file_integrity_monitoring"],
+          "related": ["AC-4", "AU-9", "CM-3", "CM-7", "MA-3", "MA-4", "RA-5", "SA-8", "SA-10", "SA-12", "SC-8", "SI-3"]
+        }
+      ]
+    }
+  }
+}
